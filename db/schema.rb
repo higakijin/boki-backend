@@ -10,7 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_141834) do
+ActiveRecord::Schema.define(version: 2022_03_01_143227) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "level_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["level_id"], name: "index_chapters_on_level_id"
+  end
+
+  create_table "finish_chapters", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "chapter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chapter_id"], name: "index_finish_chapters_on_chapter_id"
+    t.index ["user_id"], name: "index_finish_chapters_on_user_id"
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.datetime "purchased_at", null: false
+    t.datetime "deadline_at", null: false
+    t.integer "user_id", null: false
+    t.boolean "pro", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -18,11 +51,18 @@ ActiveRecord::Schema.define(version: 2022_02_28_141834) do
     t.string "encrypted_password", default: "", null: false
     t.string "name"
     t.string "email"
+    t.boolean "is_admin", default: false
+    t.integer "level_id"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["level_id"], name: "index_users_on_level_id"
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "chapters", "levels"
+  add_foreign_key "finish_chapters", "chapters"
+  add_foreign_key "finish_chapters", "users"
+  add_foreign_key "tickets", "users"
 end
