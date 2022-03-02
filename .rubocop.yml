@@ -8,5 +8,28 @@ Layout/IndentationConsistency:
 AllCops:
   Exclude:
     - "vendor/**/*" # rubocop config/default.yml
-    - "db/schema.rb"
+    - "bin/**/*"
+    - "db/**/*"
+    - "spec/**/*"
+    - "test/**/*"
   DisplayCopNames: true
+
+Style/Documentation:
+  Enabled: false
+
+ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Exclude:
+    - 'config/environments/production.rb'
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - 'config/puma.rb'
+
+Layout/LineLength:
+  Max: 198
