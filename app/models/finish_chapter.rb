@@ -1,4 +1,4 @@
 class FinishChapter < ApplicationRecord
-  belongs_to :user
-  belongs_to :chapter
+  belongs_to :user, optional: true
+  belongs_to :chapter, optional: true
 end

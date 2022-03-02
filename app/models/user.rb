@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
   has_many :tickets, dependent: :nullify
-  belongs_to :level
+  belongs_to :level, optional: true
   has_many :finish_chapters, dependent: :nullify
   has_many :chapters, through: :finish_chapters
 end
