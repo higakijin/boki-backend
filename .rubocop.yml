@@ -12,6 +12,7 @@ AllCops:
     - "db/**/*"
     - "spec/**/*"
     - "test/**/*"
+    - "config/**/*"
   DisplayCopNames: true
 
 Style/Documentation:
