@@ -10,4 +10,10 @@ class User < ActiveRecord::Base
   belongs_to :level, optional: true
   has_many :finish_chapters, dependent: :nullify
   has_many :chapters, through: :finish_chapters
+
+  has_one_attached :avatar # ActiveStorage
+
+  def avatar_url
+    avatar.service.send(:object_for, avatar.key).public_url if avatar.attached?
+  end
 end

@@ -3,4 +3,5 @@ Rails.application.routes.draw do
     registrations: 'auth/registrations'
   }
   get 'currentUser' => 'users#check_current_user'
+  resources :users
 end
