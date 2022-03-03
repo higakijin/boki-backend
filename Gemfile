@@ -17,12 +17,14 @@ gem 'puma', '~> 5.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'active_model_serializers', '~> 0.10.13'
+gem 'aws-sdk-s3', require: false
 gem 'devise'
 gem 'devise_token_auth'
 gem 'dotenv-rails'
