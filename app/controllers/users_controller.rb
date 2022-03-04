@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:update]
   def update
-    render json: current_user if current_user.update!(user_params)
+    render json: current_user if current_user.update(user_params)
   end
 
   def check_current_user
