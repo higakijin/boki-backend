@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   }
   get 'currentUser' => 'users#check_current_user'
   resources :users
+  root 'users#check_current_user'
 end
