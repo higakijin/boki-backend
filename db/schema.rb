@@ -60,9 +60,11 @@ ActiveRecord::Schema.define(version: 2022_03_05_034846) do
   create_table "lessons", force: :cascade do |t|
     t.string "name"
     t.integer "chapter_id", null: false
+    t.integer "level_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["chapter_id"], name: "index_lessons_on_chapter_id"
+    t.index ["level_id"], name: "index_lessons_on_level_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(version: 2022_03_05_034846) do
   add_foreign_key "finish_chapters", "chapters"
   add_foreign_key "finish_chapters", "users"
   add_foreign_key "lessons", "chapters"
+  add_foreign_key "lessons", "levels"
   add_foreign_key "outputs", "lessons"
   add_foreign_key "outputs", "users"
   add_foreign_key "tickets", "users"
