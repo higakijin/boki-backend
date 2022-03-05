@@ -174,6 +174,7 @@ secondCommercialChapters = [
       { id: 4, title: '売上割引・仕入割引' },
       { id: 5, title: '役務収益・役務原価１' },
       { id: 6, title: '役務収益・役務原価２' },
+      { id: 7, title: '主たる営業取引' },
     ],
   },
   {
@@ -183,8 +184,9 @@ secondCommercialChapters = [
       { id: 1, title: '外貨建取引（外国通貨での売上・仕入）' },
       { id: 2, title: '外貨建取引（売掛金と買掛金）' },
       { id: 3, title: '外貨建取引（前受金と前払金）' },
-      { id: 4, title: '為替予約（振当処理）１' },
-      { id: 5, title: '為替予約（振当処理）２' },
+      { id: 4, title: '外貨建取引（決算整理仕訳）' },
+      { id: 5, title: '為替予約（振当処理）１' },
+      { id: 6, title: '為替予約（振当処理）２' },
     ],
   },
   {
