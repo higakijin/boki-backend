@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   belongs_to :level, optional: true
   has_many :finish_chapters, dependent: :nullify
   has_many :chapters, through: :finish_chapters
+  has_many :outputs, dependent: :destroy
 
   has_one_attached :avatar # ActiveStorage
 

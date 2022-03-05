@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_170320) do
+ActiveRecord::Schema.define(version: 2022_03_05_034846) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,10 +57,28 @@ ActiveRecord::Schema.define(version: 2022_03_03_170320) do
     t.index ["user_id"], name: "index_finish_chapters_on_user_id"
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.string "name"
+    t.integer "chapter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chapter_id"], name: "index_lessons_on_chapter_id"
+  end
+
   create_table "levels", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "outputs", force: :cascade do |t|
+    t.text "post"
+    t.integer "user_id", null: false
+    t.integer "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_outputs_on_lesson_id"
+    t.index ["user_id"], name: "index_outputs_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -94,5 +112,8 @@ ActiveRecord::Schema.define(version: 2022_03_03_170320) do
   add_foreign_key "chapters", "levels"
   add_foreign_key "finish_chapters", "chapters"
   add_foreign_key "finish_chapters", "users"
+  add_foreign_key "lessons", "chapters"
+  add_foreign_key "outputs", "lessons"
+  add_foreign_key "outputs", "users"
   add_foreign_key "tickets", "users"
 end
