@@ -1,5 +1,5 @@
 class OutputsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index show create]
+  before_action :authenticate_user!, only: %i[index show create update]
 
   def index
     lesson = Lesson.find_by!(name: params[:output][:lesson])
@@ -18,7 +18,17 @@ class OutputsController < ApplicationController
     if output.save
       render json: output
     else
-      render json: '保存できませんでした'
+      render json: output.errors
+    end
+  end
+
+  def update
+    lesson = Lesson.find_by!(name: params[:output][:lesson])
+    output = current_user.outputs.find_by!(lesson_id: lesson.id )
+    if output.update(output_params)
+      render json: output
+    else
+      render json: output.errors
     end
   end
 
