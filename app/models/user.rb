@@ -17,4 +17,7 @@ class User < ActiveRecord::Base
   def avatar_url
     avatar.service.send(:object_for, avatar.key).public_url if avatar.attached?
   end
+
+  validates :name, uniqueness: true
+  validates :email, uniqueness: true
 end
