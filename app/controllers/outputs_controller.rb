@@ -1,9 +1,9 @@
 class OutputsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index show create update]
+  before_action :authenticate_user!, only: %i[index show create update destroy]
 
   def index
     lesson = Lesson.find_by!(name: params[:output][:lesson])
-    outputs = Output.where(lesson_id: lesson.id).order(:updated_at) 
+    outputs = Output.where(lesson_id: lesson.id).order(:updated_at)
     render json: outputs
   end
 
@@ -24,12 +24,18 @@ class OutputsController < ApplicationController
 
   def update
     lesson = Lesson.find_by!(name: params[:output][:lesson])
-    output = current_user.outputs.find_by!(lesson_id: lesson.id )
+    output = current_user.outputs.find_by!(lesson_id: lesson.id)
     if output.update(output_params)
       render json: output
     else
       render json: output.errors
     end
+  end
+
+  def destroy
+    lesson = Lesson.find_by!(name: params[:output][:lesson])
+    output = current_user.outputs.find_by!(lesson_id: lesson.id)
+    output.destroy!
   end
 
   private
