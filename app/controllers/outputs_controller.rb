@@ -3,7 +3,7 @@ class OutputsController < ApplicationController
 
   def index
     lesson = Lesson.find_by!(name: params[:output][:lesson])
-    outputs = Output.where(lesson_id: lesson.id)
+    outputs = Output.where(lesson_id: lesson.id).order(:updated_at) 
     render json: outputs
   end
 
