@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
   create_table "chapters", force: :cascade do |t|
     t.string "name", null: false
     t.integer "level_id", null: false
+    t.integer "order", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["level_id"], name: "index_chapters_on_level_id"
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
 
   create_table "lessons", force: :cascade do |t|
     t.string "name"
+    t.integer "order", null: false
     t.integer "chapter_id", null: false
     t.integer "level_id", null: false
     t.datetime "created_at", precision: 6, null: false
