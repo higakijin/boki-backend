@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   }
   get 'currentUser' => 'users#check_current_user'
   resources :users # 後でonlyを設定すること
-  resources :outputs
+  resources :outputs do
+    resources :comments
+  end
+
   root 'users#check_current_user'
 end
