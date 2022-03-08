@@ -8,5 +8,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  namespace :admin do
+    resources :users
+  end
+
   root 'users#check_current_user'
 end
