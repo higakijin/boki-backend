@@ -1,5 +1,5 @@
 class OutputSerializer < ActiveModel::Serializer
-  attributes %i[id post created_at updated_at lesson level_name_ja level_name_en chapter_order]
+  attributes %i[id post created_at updated_at lesson be_finished level_name_ja level_name_en chapter_order]
   belongs_to :user, serializer: UserSerializer
   has_many :comments, serializer: CommentSerializer
 

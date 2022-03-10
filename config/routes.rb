@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :outputs
   end
 
   root 'users#check_current_user'

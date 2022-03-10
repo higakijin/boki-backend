@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
 
   create_table "outputs", force: :cascade do |t|
     t.text "post"
+    t.boolean "be_finished", default: false
     t.integer "user_id", null: false
     t.integer "lesson_id", null: false
     t.datetime "created_at", precision: 6, null: false
