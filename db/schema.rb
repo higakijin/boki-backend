@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
   create_table "chapters", force: :cascade do |t|
     t.string "name", null: false
     t.integer "level_id", null: false
+    t.integer "order", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["level_id"], name: "index_chapters_on_level_id"
@@ -58,17 +59,9 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "finish_chapters", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "chapter_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["chapter_id"], name: "index_finish_chapters_on_chapter_id"
-    t.index ["user_id"], name: "index_finish_chapters_on_user_id"
-  end
-
   create_table "lessons", force: :cascade do |t|
     t.string "name"
+    t.integer "order", null: false
     t.integer "chapter_id", null: false
     t.integer "level_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -85,6 +78,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
 
   create_table "outputs", force: :cascade do |t|
     t.text "post"
+    t.boolean "be_finished", default: false
     t.integer "user_id", null: false
     t.integer "lesson_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -124,8 +118,6 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
   add_foreign_key "chapters", "levels"
   add_foreign_key "comments", "outputs"
   add_foreign_key "comments", "users"
-  add_foreign_key "finish_chapters", "chapters"
-  add_foreign_key "finish_chapters", "users"
   add_foreign_key "lessons", "chapters"
   add_foreign_key "lessons", "levels"
   add_foreign_key "outputs", "lessons"

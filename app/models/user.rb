@@ -8,8 +8,6 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :tickets, dependent: :nullify
   belongs_to :level, optional: true
-  has_many :finish_chapters, dependent: :nullify
-  has_many :chapters, through: :finish_chapters
   has_many :outputs, dependent: :destroy
 
   has_many :comments, dependent: :destroy

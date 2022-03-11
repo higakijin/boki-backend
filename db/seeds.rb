@@ -365,18 +365,18 @@ secondCommercialChapters = [
 
 secondIndustrialChapters.each do |data_chapter|
   level = Level.find_by!(name: '2級工業簿記')
-  created_chapter = level.chapters.create!(name: data_chapter[:title])
+  created_chapter = level.chapters.create!(name: data_chapter[:title], order: data_chapter[:id])
   data_chapter[:lessons].each do |lesson|
-    created_chapter.lessons.create!(name: lesson[:title], level_id: created_chapter.level.id)
+    created_chapter.lessons.create!(name: lesson[:title], level_id: created_chapter.level.id, order: lesson[:id])
   end
 end
 puts '2級工業簿記のチャプター・レッスンを作成しました'
 
 secondCommercialChapters.each do |data_chapter|
   level = Level.find_by!(name: '2級商業簿記')
-  created_chapter = level.chapters.create!(name: data_chapter[:title])
+  created_chapter = level.chapters.create!(name: data_chapter[:title], order: data_chapter[:id])
   data_chapter[:lessons].each do |lesson|
-    created_chapter.lessons.create!(name: lesson[:title], level_id: created_chapter.level.id)
+    created_chapter.lessons.create!(name: lesson[:title], level_id: created_chapter.level.id, order: lesson[:id])
   end
 end
 puts '2級商業簿記のチャプター・レッスンを作成しました'
