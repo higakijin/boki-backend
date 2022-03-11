@@ -8,9 +8,10 @@ class OutputSerializer < ActiveModel::Serializer
   end
 
   def level_name_en
-    if level_name_ja == '2級工業簿記'
+    case level_name_ja
+    when '2級工業簿記'
       'second_industrial'
-    elsif level_name_ja == '2級商業簿記'
+    when '2級商業簿記'
       'second_commercial'
     end
   end
