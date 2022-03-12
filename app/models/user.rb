@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
     avatar.service.send(:object_for, avatar.key).public_url if avatar.attached?
   end
 
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, length: { maximum: 15 }
   validates :email, uniqueness: true
 end
