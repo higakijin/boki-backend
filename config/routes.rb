@@ -3,14 +3,14 @@ Rails.application.routes.draw do
     registrations: 'auth/registrations'
   }
   get 'currentUser' => 'users#check_current_user'
-  resources :users # 後でonlyを設定すること
+  resources :users, only: [:update]
   resources :outputs do
-    resources :comments
+    resources :comments, only: [:create]
   end
 
   namespace :admin do
-    resources :users
-    resources :outputs
+    resources :users, only: [:index, :show, :update]
+    resources :outputs, only: [:update]
   end
 
   root 'users#check_current_user'

@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
-  has_many :tickets, dependent: :nullify
   belongs_to :level, optional: true
   has_many :outputs, dependent: :destroy
 
@@ -18,6 +17,6 @@ class User < ActiveRecord::Base
     avatar.service.send(:object_for, avatar.key).public_url if avatar.attached?
   end
 
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, length: { maximum: 15 }
   validates :email, uniqueness: true
 end

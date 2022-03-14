@@ -87,22 +87,13 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
     t.index ["user_id"], name: "index_outputs_on_user_id"
   end
 
-  create_table "tickets", force: :cascade do |t|
-    t.datetime "purchased_at", null: false
-    t.datetime "deadline_at", null: false
-    t.integer "user_id", null: false
-    t.boolean "pro", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_tickets_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name"
     t.string "email"
+    t.string "plan", default: "basic"
     t.boolean "is_admin", default: false
     t.integer "level_id"
     t.text "tokens"
@@ -122,5 +113,4 @@ ActiveRecord::Schema.define(version: 2022_03_08_012031) do
   add_foreign_key "lessons", "levels"
   add_foreign_key "outputs", "lessons"
   add_foreign_key "outputs", "users"
-  add_foreign_key "tickets", "users"
 end

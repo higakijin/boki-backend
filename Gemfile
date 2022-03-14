@@ -26,6 +26,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'active_model_serializers', '~> 0.10.13'
 gem 'aws-sdk-s3', require: false
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'rack-cors'
